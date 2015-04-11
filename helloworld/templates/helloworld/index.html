@@ -1,0 +1,31 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+
+
+
+
+
+
+<form action="events" method="get">
+{% for key,value in cat.items %}
+
+  <input type="checkbox" name="category" value= {{key}}>  {{ value }}<br>
+  {% endfor %}
+
+  <input type="submit" value="Submit">
+  </form>
+
+
+
+
+
+
+
+  </body>
+
+</html>
