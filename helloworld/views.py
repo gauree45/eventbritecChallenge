@@ -38,7 +38,7 @@ def events(request):
 	categorylist={}
 	
 	for item in categories:
-		
+		#comment
 		#categorylist.update({'a':1})
 		id=item['id']
 		catname=item['name']
