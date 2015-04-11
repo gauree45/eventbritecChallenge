@@ -5,31 +5,18 @@
 <body>
 <h1>This is events list </h1>
 
-{% for value in cat %}
+{% for value in hello %}
+
+   {{ value.name }}
+  {% endfor %}
 <p>
- {{value.name}}
+
  
  </p>
-  {% endfor %}
+ </body>
+ 
+ </html>
 
 
 
 
-<div class="pagination">
-    <span class="step-links">
-        {% if cat.has_previous %}
-            <a href="?page={{ cat.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ cat.number }} of {{ cat.paginator.num_pages }}.
-        </span>
-
-        {% if cat.has_next %}
-            <a href="?page={{ cat.next_page_number }}">next</a>
-        {% endif %}
-    </span>
-</div>
-
-<body>
-</html>

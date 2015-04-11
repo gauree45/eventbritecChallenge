@@ -14,7 +14,7 @@
 <form action="events" method="get">
 {% for key,value in cat.items %}
 
-  <input type="checkbox" name="category" value= {{key}}>  {{ value }}<br>
+  <input type="checkbox" name="categories" value= {{key}}>  {{ value }}<br>
   {% endfor %}
 
   <input type="submit" value="Submit">
