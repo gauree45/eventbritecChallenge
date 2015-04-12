@@ -1,0 +1,38 @@
+
+body { 
+    background-color: #2C3E50; 
+    color: #D35400; 
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 2em; /* set this to whatever size you want */
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+
+span.bigcheck-target {
+    font-family: FontAwesome; /* use an icon font for the checkbox */    
+}
+input[type='checkbox'].bigcheck {     
+    position: relative;
+    left: -999em; /* hide the real checkbox */
+}
+
+input[type='checkbox'].bigcheck + span.bigcheck-target:after {
+    content: "\f096"; /* In fontawesome, is an open square (fa-square-o) */
+}
+input[type='checkbox'].bigcheck:checked + span.bigcheck-target:after {
+    content: "\f046"; /* fontawesome checked box (fa-check-square-o) */
+}
+
+/* ==== optional - colors and padding to make it look nice === */
+
+span.bigcheck { 
+    display: block;
+    padding: 0.5em;;
+}

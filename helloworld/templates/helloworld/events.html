@@ -1,18 +1,38 @@
 <html>
 <head>
 </head>
-
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'helloworld/style.css' %}" />
 <body>
 <h1>This is events list </h1>
 
-{% for value in hello %}
 
-   {{ value.name }}
-  {% endfor %}
+<table>
+<th>
+<td>NAME</td>
+<td>CATEGORY</td>
+<td>LOCATION</td>
+</th>
+{% for value in events %}
+<tr>
+<td><a href={{value.url}}> {{ value.name.text }}</a></td>
+<td>{{value.category.name}}</td>
+<td>{{value.venue.address.region}} {{value.venue.address.country}}</td>
+</tr>
+{% endfor %}
+</table>
+
 <p>
+{% if previous_page %}
+<a href={{previous_page}}>previous</a>
+{% endif %}
 
- 
+{% if next_page %}
+<a href={{ next_page}}>next </a>
+ {% endif %}
  </p>
+ <p>Page {{ current_page_no }}
+ of {{ max_pages }} </p>
  </body>
  
  </html>
