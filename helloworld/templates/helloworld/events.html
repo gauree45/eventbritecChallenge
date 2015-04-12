@@ -1,18 +1,16 @@
 <html>
 <head>
 </head>
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'helloworld/style.css' %}" />
+
 <body>
-<h1>This is events list </h1>
+<h1>List of Events </h1>
 
-
-<table>
-<th>
+<table border="bold">
+<tr>
 <td>NAME</td>
 <td>CATEGORY</td>
 <td>LOCATION</td>
-</th>
+</tr>
 {% for value in events %}
 <tr>
 <td><a href={{value.url}}> {{ value.name.text }}</a></td>
@@ -21,7 +19,7 @@
 </tr>
 {% endfor %}
 </table>
-
+</div>
 <p>
 {% if previous_page %}
 <a href={{previous_page}}>previous</a>

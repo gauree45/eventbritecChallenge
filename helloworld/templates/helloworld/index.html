@@ -1,40 +1,16 @@
 <html>
-
-<head>
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'helloworld/style.css' %}" />
-</head>
-
 <body>
 
-
-
-
-
-
-
-
 <form action="events" method="get">
-
-	
 	{% for key,value in cat.items %}
 	
-	<input type="checkbox" class="css-checkbox" name="categories" value= {{key}}/>  
-	<label for="categories" class="css-label">{{ value }}</label> </br>
+	<input type="checkbox" name="categories" value="{{ key }}"/>{{value}} <br />
+	<!--
+	<input type="checkbox" name="categories" value={{ key }} />  {{ value }}
+	-->
 	
 	{% endfor %}
-	
-  
-</span>
   <input type="submit" value="Submit">
   </form>
-
-
-
-
-
-
-
   </body>
-
-</html>
+ </html>
