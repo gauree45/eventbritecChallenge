@@ -33,8 +33,8 @@ def index(request):
 
 
 #This function provides the api page results for events function 
-def getevents(url,set_max_pages):
-	
+def getevents(url):
+	print (base_url+url)
 	response=urllib.request.urlopen(base_url+url)
 	str_response=response.readall().decode('utf-8')
 	data=json.loads(str_response)
@@ -55,18 +55,32 @@ def get_max_pages(url):
 #This function grabs the categories from the api and displays on events.html
 def events(request):
 	
-	set_max_page_count='false'
+	
 	current_page_uri=request.get_full_path()
-	query_string=current_page_uri.split('?')
+	#query_string=current_page_uri.split('?')
 	get_page_no = request.GET.get('page')
+	
+	
+	
 	valid_query='true'
-	#calculates the maximum number of pages for the query_string
-	max_pages=get_max_pages(query_string[1])
+	
+	
 	try:
 		current_page_no = int(get_page_no)
 	except TypeError:
 		current_page_no = 1
-		set_max_page_count='true'
+		
+	#buld the query string for fetching the results from API
+	selected_category_list=request.GET.getlist('categories')
+	selected_category_list_integer = [int(i) for i in selected_category_list]
+	query_string= 'categories='+str(selected_category_list_integer).strip('[]')+'&page='+str(current_page_no)
+	query_string = ''.join(query_string.split())
+	
+	#calculates the maximum number of pages for the query_string
+	max_pages=get_max_pages(query_string)
+	
+	print(query_string)
+		
 	#checks if the current page is 1 then disables previous button
 	if current_page_no is 1:
 		next_page=current_page_uri+'&page=2'
@@ -94,7 +108,7 @@ def events(request):
 	
 	#valid query is the one where pageno<maximum page number for the query_string 
 	if  valid_query is 'true':
-		events=getevents(query_string[1],set_max_page_count)
+		events=getevents(query_string)
 	else:
 		raise Http404("Page Not Found")
 	
