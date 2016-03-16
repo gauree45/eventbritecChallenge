@@ -1,4 +1,5 @@
-import urllib.request
+#import urllib.request
+import urllib2
 import json
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -12,9 +13,14 @@ base_url='https://www.eventbriteapi.com/v3/events/search/?token=BKKRDKVUVRC5WG4H
 def index(request):
 	#This url provides the categories to the user for selection
 	url='https://www.eventbriteapi.com/v3/categories/?token=BKKRDKVUVRC5WG4HAVLT'
-	response=urllib.request.urlopen(url)
-	str_response=response.readall().decode('utf-8')
-	data=json.loads(str_response)
+	#response=urllib.request.urlopen(url)
+	response=urllib2.urlopen('https://www.eventbriteapi.com/v3/categories/?token=BKKRDKVUVRC5WG4HAVLT')
+
+	#str_response=response.readall().decode('utf-8')
+	#url = 'http://data.mtgox.com/api/1/BTCUSD/ticker'
+	data = json.load(urllib2.urlopen(url))
+	#data=json.loads(response)
+	#data=json.loads(str_response)
 	categories=data['categories']
 	categorylist={}
 	name=[]
@@ -35,18 +41,23 @@ def index(request):
 #This function provides the api page results for events function 
 def getevents(url):
 	print (base_url+url)
-	response=urllib.request.urlopen(base_url+url)
-	str_response=response.readall().decode('utf-8')
-	data=json.loads(str_response)
+	#response=urllib.request.urlopen(base_url+url)
+	#response=urllib2.urlopen(base_url+url)
+	#str_response=response.readall().decode('utf-8')
+	#data=json.loads(str_response)
+	data=json.load(urllib2.urlopen(base_url+url))
 	event_list=data['events']
 	return event_list
 
 
 #This function calculates the maximum pages
 def get_max_pages(url):
-	response=urllib.request.urlopen(base_url+url)
-	str_response=response.readall().decode('utf-8')
-	data=json.loads(str_response)
+	#response=urllib.request.urlopen(base_url+url)
+	#response=urllib2.urlopen(base_url+url)
+	#str_response=response.readall().decode('utf-8')
+	#data=json.loads(str_response)
+	data=json.load(urllib2.urlopen(base_url+url))
+
 	pagination_obj=data['pagination']
 	max_pages1=pagination_obj['page_count']
 	print (max_pages1)
