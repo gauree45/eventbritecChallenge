@@ -15,7 +15,7 @@ RUN mkdir /opt/eventbrite
 ADD helloworld/ /opt/eventbrite/helloworld
 ADD mysite /opt/eventbrite/mysite
 ADD manage.py /opt/eventbrite
-
+RUN python /opt/eventbrite/manage.py migrate
 USER root
 EXPOSE 8000
 CMD ["sudo","python", "/opt/eventbrite/manage.py", "runserver", "0.0.0.0:8000", "--traceback"]
